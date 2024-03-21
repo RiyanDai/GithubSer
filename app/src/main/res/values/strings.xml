@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GithubApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+
+    <string name="followers_count">Followers: %d</string>
+    <string name="following_count">Following: %d</string>
+
+    <string name="setting">Setting</string>
+</resources>
+
