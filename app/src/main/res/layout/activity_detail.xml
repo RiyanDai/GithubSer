@@ -30,7 +30,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintStart_toEndOf="@+id/image"
             app:layout_constraintTop_toTopOf="@+id/image"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_marginStart="16dp"
             tools:text="Nama" />
 
@@ -80,6 +80,7 @@
             app:layout_constraintStart_toStartOf="@id/image"
             app:layout_constraintTop_toTopOf="@id/image" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.tabs.TabLayout
@@ -95,5 +96,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnFavorite"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:src="@drawable/baseline_favorite_24"
+        android:layout_gravity="bottom|end"
+        app:tint="@color/white" />
 
 </LinearLayout>

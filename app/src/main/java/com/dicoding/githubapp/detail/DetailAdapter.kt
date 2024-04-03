@@ -1,4 +1,4 @@
-package com.dicoding.githubapp.data.ui
+package com.dicoding.githubapp.detail
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

@@ -1,28 +1,38 @@
-package com.dicoding.githubapp.data.ui
+package com.dicoding.githubapp.detail
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import coil.load
 import com.dicoding.githubapp.R
-import com.dicoding.githubapp.data.Utils.Result
-import com.dicoding.githubapp.data.follow.FollowsFragment
+import com.dicoding.githubapp.Utils.Result
+import com.dicoding.githubapp.data.local.room.DbModul
+import com.dicoding.githubapp.data.response.ItemsItem
+import com.dicoding.githubapp.follow.FollowsFragment
 import com.dicoding.githubapp.data.response.ResponseDetailUser
 import com.dicoding.githubapp.databinding.ActivityDetailBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    private val viewModel by viewModels<DetailViewModel>()
+    private val viewModel by viewModels<DetailViewModel> {
+        DetailViewModel.Factory(DbModul(this))
+    }
 
     private lateinit var followersCountTextView: TextView
     private lateinit var followingCountTextView: TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +42,8 @@ class DetailActivity : AppCompatActivity() {
         followersCountTextView = findViewById(R.id.followersCount)
         followingCountTextView = findViewById(R.id.followingCount)
 
-        val username = intent.getStringExtra("username") ?: ""
+        val item = intent.getParcelableExtra<ItemsItem>("item")
+        val username = item?.login ?: ""
 
         viewModel.resultDetail.observe(this) { result ->
             when (result) {
@@ -89,5 +100,24 @@ class DetailActivity : AppCompatActivity() {
 
         viewModel.getFollowers(username)
 
+
+        viewModel.resultSuksesFavorite.observe(this) {
+            binding.btnFavorite.changeIconColor(R.color.accent)
+        }
+
+        viewModel.resultDeleteFavorite.observe(this) {
+            binding.btnFavorite.changeIconColor(R.color.white)
+        }
+
+        binding.btnFavorite.setOnClickListener {
+            viewModel.setFavorite(item)
+        }
+
+        viewModel.findFavorite(item?.id ?: 0) {
+            binding.btnFavorite.changeIconColor(R.color.accent)
+        }
     }
+}
+fun FloatingActionButton.changeIconColor(@ColorRes color: Int) {
+    imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this.context, color))
 }

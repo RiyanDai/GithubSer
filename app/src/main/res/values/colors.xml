@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+<color name="black">#000000</color>
+<color name="white">#FFFFFF</color>
+<color name="red">#FF0000</color>
+<color name="green">#00FF00</color>
+<color name="blue">#0000FF</color>
+
+<!-- Warna abu-abu -->
+<color name="gray_light">#D3D3D3</color>
+<color name="gray">#808080</color>
+<color name="gray_dark">#A9A9A9</color>
+
+<!-- Warna primer -->
+<color name="primary">#3F51B5</color> <!-- Biru -->
+<color name="primary_dark">#303F9F</color> <!-- Biru tua -->
+<color name="primary_light">#C5CAE9</color> <!-- Biru terang -->
+
+<!-- Warna aksen -->
+<color name="accent">#FF4081</color> <!-- Merah muda -->
+<color name="accent_dark">#F50057</color> <!-- Merah muda tua -->
+<color name="accent_light">#FF80AB</color> <!-- Merah muda terang -->
 </resources>
+
+
+

@@ -17,17 +17,13 @@ import java.util.concurrent.TimeUnit
 object ApiClient {
     private val okhttp = OkHttpClient.Builder()
         .apply {
-            // Aktifkan logging hanya untuk mode Debug
             if (BuildConfig.DEBUG) {
                 val loggingInterceptor = HttpLoggingInterceptor()
                 loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
                 addInterceptor(loggingInterceptor)
             }
 
-            // Aktifkan pooling koneksi
             connectionPool(ConnectionPool(5, 30, TimeUnit.SECONDS))
-
-            // Aktifkan kompresi
             addInterceptor(GzipRequestInterceptor())
         }
         .readTimeout(25, TimeUnit.SECONDS)

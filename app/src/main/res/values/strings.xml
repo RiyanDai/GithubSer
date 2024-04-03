@@ -1,13 +1,15 @@
 <resources>
-    <string name="app_name">GithubApp</string>
+    <string name="app_name">GithubSer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
-
+    <string name="detail">Detail</string>
+    <string name="search">Search</string>
     <string name="followers_count">Followers: %d</string>
     <string name="following_count">Following: %d</string>
-
+    <string name="favorite">Favorite</string>
     <string name="setting">Setting</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>
 

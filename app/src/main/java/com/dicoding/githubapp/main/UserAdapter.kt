@@ -1,6 +1,5 @@
-package com.dicoding.githubapp.data.ui
+package com.dicoding.githubapp.main
 
-import android.content.ClipData.Item
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,7 @@ class UserAdapter(
 
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    fun setData(data: MutableList<ItemsItem>) {
+    fun setData(data: List<ItemsItem>) {
         this.data.clear()
         this.data.addAll(data)
         notifyDataSetChanged()
@@ -24,7 +23,7 @@ class UserAdapter(
     inner class UserViewHolder(private val binding: ItemMainBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemsItem) {
             binding.apply {
-                image.load(item.avatarUrl)
+                image.load(item.avatar_url)
                 username.text = item.login
             }
         }

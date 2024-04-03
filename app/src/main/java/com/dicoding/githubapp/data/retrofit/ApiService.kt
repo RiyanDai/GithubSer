@@ -50,7 +50,7 @@ interface ApiService {
      suspend fun searchUser(
           @QueryMap params: Map<String, Any>,
           @Header("Authorization")
-          authorization: String = BuildConfig.TOKEN
+               authorization: String = BuildConfig.TOKEN
      ): Response
 
 

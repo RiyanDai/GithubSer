@@ -1,27 +1,27 @@
-package com.dicoding.githubapp.data.ui
+package com.dicoding.githubapp.detail
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.dicoding.githubapp.data.Utils.Result
+import com.dicoding.githubapp.Utils.Result
+import com.dicoding.githubapp.data.local.room.DbModul
+import com.dicoding.githubapp.data.response.ItemsItem
 import com.dicoding.githubapp.data.retrofit.ApiClient
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
-class DetailViewModel: ViewModel() {
+class DetailViewModel(private val db: DbModul): ViewModel() {
 
     val resultDetail = MutableLiveData<Result>()
     val resultFollowers = MutableLiveData<Result>()
     val resultFollowing = MutableLiveData<Result>()
-
-    val followersCount = MutableLiveData<Int>()
-    val followingCount = MutableLiveData<Int>()
-
+    val resultSuksesFavorite = MutableLiveData<Boolean>()
+    val resultDeleteFavorite = MutableLiveData<Boolean>()
 
 
     fun getDetailUser(username:String){
@@ -88,6 +88,35 @@ class DetailViewModel: ViewModel() {
                 resultFollowing.value = Result.Success(it)
             }
         }
+    }
+
+    private var isFavorite = false
+    fun setFavorite(item: ItemsItem?) {
+        viewModelScope.launch {
+            item?.let {
+                if (isFavorite) {
+                    db.userDao.delete(item)
+                    resultDeleteFavorite.value = true
+                } else {
+                    db.userDao.Insert(item)
+                    resultSuksesFavorite.value = true
+                }
+            }
+            isFavorite = !isFavorite
+        }
+    }
+    fun findFavorite(id: Int, listenFavorite: () -> Unit) {
+        viewModelScope.launch {
+            val user = db.userDao.findById(id)
+            if (user != null) {
+                listenFavorite()
+                isFavorite = true
+            }
+        }
+    }
+
+    class Factory(private val db: DbModul) : ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T = DetailViewModel(db) as T
     }
 
 }

@@ -1,4 +1,4 @@
-package com.dicoding.githubapp.data.Utils
+package com.dicoding.githubapp.Utils
 
 sealed class Result {
     data class Success<out T>(val data: T) : Result()
