@@ -1,1 +1,2 @@
-![Animation](https://github.com/RiyanDai/GithubApp/assets/86785038/a1be23da-cce6-47dd-96f8-870179bf87f5)
+
+![Review](https://github.com/RiyanDai/GithubSer/assets/86785038/0271f9d8-2256-4b36-a8e9-fc9496b9bc87)
